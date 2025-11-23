@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="cn.itcast.shop.user.vo.User" table="user">
+        <!-- 主键 -->
+        <id name="uid" column="uid">
+            <generator class="native"/>
+        </id>
+        
+        <!-- 普通属性 -->
+        <property name="username" column="username" type="string"/>
+        <property name="password" column="password" type="string"/>
+        <property name="name" column="name" type="string"/>
+        <property name="email" column="email" type="string"/>
+        <property name="phone" column="phone" type="string"/>
+        <property name="addr" column="addr" type="string"/>
+        
+        <!-- 一对多关联：一个用户对应多个订单 -->
+        <set name="orders" inverse="true">
+            <key column="uid"/>
+            <one-to-many class="cn.itcast.shop.order.vo.Order"/>
+        </set>
+    </class>
+</hibernate-mapping>
